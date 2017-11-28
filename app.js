@@ -12,8 +12,7 @@ require('controllers')(app)
 require('models')(db)
 
 app.listen(process.env.PORTA, function () {
-    console.log(`###################`)
-    console.log(`Aplicação iniciada.`)
-    console.log(`Acesse: http://localhost:${process.env.PORTA}`)
+    console.log(`[app] Aplicação iniciada.`)
+    console.log(`[link] http://localhost:${process.env.PORTA}`)
 })
 
