@@ -7,9 +7,9 @@ let app = express()
 
 app.set('view engine', 'ejs')
 
+const models = require('models')(db)
 require('middlewares')(app)
-require('controllers')(app)
-require('models')(db)
+require('controllers')(app, models)
 
 app.listen(process.env.PORTA, function () {
     console.log(`[app] Aplicação iniciada.`)

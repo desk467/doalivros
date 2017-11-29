@@ -1,13 +1,15 @@
 module.exports = function (db) {
     // Registro de models
 
-    const models = [
-        require('models/livro')(db),
-        require('models/cidade')(db),
-        require('models/genero')(db),
-        require('models/usuario')(db),
-        require('models/contato')(db),
-    ]
+    const models = {
+        Livro: require('models/livro')(db),
+        Cidade: require('models/cidade')(db),
+        Genero: require('models/genero')(db),
+        Usuario: require('models/usuario')(db),
+        Contato: require('models/contato')(db),
+    }
 
-    models.forEach(model => model.montar())
+    Object.values(models).forEach(model => model.montar())
+
+    return models
 }
