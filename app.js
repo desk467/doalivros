@@ -6,6 +6,7 @@ let express = require('express')
 let app = express()
 
 app.set('view engine', 'ejs')
+app.use(express.static(__dirname + '/static'))
 
 const models = require('models')(db)
 require('middlewares')(app)
