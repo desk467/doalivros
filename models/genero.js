@@ -3,7 +3,10 @@
 module.exports = function (db) {
     return {
         montar: function () {
-            // Estrutura de Genero aqui.
+            db.run(`CREATE TABLE IF NOT EXISTS Genero (
+                id          INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                descricao   VARCHAR(8)
+            )`)
         }
     }
 }

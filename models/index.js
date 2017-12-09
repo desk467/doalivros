@@ -2,11 +2,11 @@ module.exports = function (db) {
     // Registro de models
 
     const models = {
-        Livro: require('models/livro')(db),
-        Cidade: require('models/cidade')(db),
         Genero: require('models/genero')(db),
-        Usuario: require('models/usuario')(db),
+        Cidade: require('models/cidade')(db),
         Contato: require('models/contato')(db),
+        Usuario: require('models/usuario')(db),
+        Livro: require('models/livro')(db),
     }
 
     Object.values(models).forEach(model => model.montar())
