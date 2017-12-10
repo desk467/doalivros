@@ -1,3 +1,57 @@
 /* 
  * Estilo principal da aplicação
  */
+
+ @import url('https://fonts.googleapis.com/css?family=Lato:300,400|Montserrat:700');
+
+ * {
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+ }
+
+ h1, h2, strong, .bold {
+     font-family: 'Montserrat';
+     font-weight: 700;
+ }
+
+ html {
+     height: 100vh;
+ }
+
+ body {
+     margin: 0;
+     min-height: 100%;
+
+     overflow-x: hidden;
+ }
+
+ .header {
+    height: 3em;
+    padding: 0 1em;
+
+    border-bottom: 1px solid #ddd;
+ }
+
+ .footer {
+    margin-top: 3em;
+    padding: 0 1em;
+    height: 6.5em;
+
+    border-top: 1px solid #ddd;
+    background-color: rgba(0,0,0,0.05);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+ }
+
+ .footer > * {
+     margin: .5em;
+ }
+
+ .jumbotron {
+     background-color: transparent;
+
+     padding: 20px 0;
+ }

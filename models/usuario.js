@@ -37,7 +37,7 @@ module.exports = function (db) {
         hashear_senha: (senha) => crypto.createHash('md5').update(senha).digest("hex"),
 
         autenticar: (usuario, senha, done) => {
-            const SQL = 'SELECT * FROM Usuario WHERE apelido = ? OR email = ? AND senha = ?'
+            const SQL = 'SELECT * FROM Usuario WHERE (apelido = ? OR email = ?) AND senha = ?'
 
             db.get(SQL, [usuario, usuario, metodos.hashear_senha(senha)], function (err, dados) {
                 if (err) {
@@ -46,7 +46,7 @@ module.exports = function (db) {
                     if (dados) {
                         done(null, metodos.fabricar(dados))
                     } else {
-                        done('Usuário ou senha inválidos', null)
+                        done('Usuário ou senha inválidos.', null)
                     }
                 }
             })
@@ -66,11 +66,15 @@ module.exports = function (db) {
         },
 
         inserir: (dados, done) => {
-            if (dados.senha !== dados.confirmacao_senha)
+            if (dados.senha !== dados.confirmacao_senha) {
                 done('Senhas não coincidem.', null)
+                return
+            }
 
-            if (!dados.email.includes('@'))
+            if (!dados.email.includes('@')) {
                 done('E-mail inválido', null)
+                return
+            }
 
             const SQL = `INSERT INTO Usuario
                                 (nome, apelido, email, senha, id_cidade)
@@ -80,11 +84,11 @@ module.exports = function (db) {
                 dados.nome,
                 dados.apelido,
                 dados.email,
-                dados.senha,
+                metodos.hashear_senha(dados.senha),
                 dados.id_cidade,
             ], function (err, data) {
                 if (err) {
-                    throw err
+                    done('Houve um erro ao processar a solicitação', null)
                 } else {
                     done(null, metodos.fabricar({ ...dados, id: this.lastID }))
                 }

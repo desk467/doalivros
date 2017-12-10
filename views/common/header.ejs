@@ -1,3 +1,21 @@
-<nav>
-    <h2>Header da aplicação</h2>
+<nav class="navbar header">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand bold" href="/">doalivros</a>
+        </div>
+        <ul class="nav navbar-nav">
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <% if (usuario) { %>
+                    <a href="/conta">@<%= usuario.apelido %></a>
+                <% } else { %>
+                    <a href="/login">
+                        <span class="glyphicon glyphicon-log-in"></span> Entrar
+                    </a>
+                    <% } %>
+
+            </li>
+        </ul>
+    </div>
 </nav>

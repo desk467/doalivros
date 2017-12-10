@@ -1,61 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-      <title>doalivros - Cadastro</title>
-      <meta charset="utf-8">
-      <% include ../common/estilos %>
-    </head>
 
-    <body>
-      <% include ../common/header %>
-            <nav class="navbar navbar-inverse">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand">DOALIVROS</a>
-                    </div>
-                    <ul class="nav navbar-nav">
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-home"></span> Home</a>
-                        </li>
-                         <li>
-                             <a href="#">
-                                 <span class="glyphicon glyphicon-user"></span> Sign Up</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+<head>
+    <title>doalivros - Cadastro</title>
+    <meta charset="utf-8">
+    <% include ../common/estilos %>
+</head>
 
+<body>
+    <% include ../common/header %>
         <div class="row">
-          <div class="jumbotron text-center">
-            <h2>Cadastro Livro</h2>
-          </div>
-          <div class="col-sm-12">
-            <form method='post'>
+            <div class="jumbotron text-center">
+                <h2>Cadastrar livro</h2>
+            </div>
+            <div class="col-sm-12">
+                <form method='post'>
 
-              <input id="nome" type="text" class="form-control" name="nome" placeholder="Nome">
-              <input id="autor" type="text" class="form-control" name="autor" placeholder="Autor">
-              <input id="editora" type="text" class="form-control" name="editora" placeholder="Editora">
-              <textarea id="decricao" type="text" rows="5" class="form-control" name="descrcao" placeholder="Descrição"/>
-              <input id="genero" type="text" class="form-control" name="genero" placeholder="Genero">
-              <input id="cidade" type="text" class="form-control" name="cidade" placeholder="Cidade">
+                    <input id="nome" type="text" class="form-control" name="nome" placeholder="Nome">
+                    <input id="autor" type="text" class="form-control" name="autor" placeholder="Autor">
+                    <input id="editora" type="text" class="form-control" name="editora" placeholder="Editora">
+                    <textarea id="decricao" type="text" rows="5" class="form-control" name="descrcao" placeholder="Descrição" />
+                    <input id="genero" type="text" class="form-control" name="genero" placeholder="Genero">
+                    <input id="cidade" type="text" class="form-control" name="cidade" placeholder="Cidade">
 
-              <!--<input id="Status" type="text" class="form-control" name="status" placeholder="Status">-->
-              <button type="submit" class="btn btn-default " id="btnCadastrar">Cadastrar</button>
-            </form>
+                    <!--<input id="Status" type="text" class="form-control" name="status" placeholder="Status">-->
+                    <button type="submit" class="btn btn-default " id="btnCadastrar">Cadastrar</button>
+                </form>
 
-            <% if (erro) { %>
-              <div class="alert alert-danger">
-                <strong>Erro:</strong>
-                <%= erro %>
-              </div>
-              <% } %>
-          </div>
+                <% if (erro) { %>
+                    <div class="alert alert-danger">
+                        <strong>Erro:</strong>
+                        <%= erro %>
+                    </div>
+                    <% } %>
+            </div>
         </div>
-            <% include ../common/scripts %>
-    </body>
-    <% include ../common/footer %>
+        <% include ../common/scripts %>
+</body>
+<% include ../common/footer %>
 
 </html>

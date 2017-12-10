@@ -10,53 +10,36 @@
 
 <body>
     <% include ../common/header %>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand">DOALIVROS</a>
-                </div>
-                <ul class="nav navbar-nav">
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-home"></span> Home</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div class="col-sm-12">
-            <div class="row">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4 conta-form">
                 <div class="jumbotron text-center">
-                    <h2>LOGIN</h2>
+                    <h2>Entrar</h2>
                 </div>
-                <div class="col-sm-12">
-                    <form method="post">
-                        <div class="input-group input-group-lg">
+                <form method="post">
+                    <div class="input-group">
+                        <span id="usuario" class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </span>
+                        <input id="usuario" type="text" class="form-control" name="usuario" placeholder="Usuário">
+                    </div>
+                    <div class="input-group">
+                        <span id="senha" class="input-group-addon">
+                            <i class="glyphicon glyphicon-lock"></i>
+                        </span>
+                        <input id="senha" type="password" class="form-control" name="senha" placeholder="Senha">
+                    </div>
+                    <button type="submit" class="btn btn-primary " id="btnEntrar">Entrar</button>
+                </form>
+                <p> Ainda não possui cadastro ?
+                    <a href='/cadastro'>Increva-se</a>
+                </p>
 
-                            <input id="usuario" type="text" class="form-control" name="usuario" placeholder="Usuário">
-                            <span id="usuario" class="input-group-addon">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                        </div>
-                        <div class="input-group input-group-lg">
-                            <input id="senha" type="password" class="form-control" name="senha" placeholder="Senha">
-                            <span id="senha" class="input-group-addon">
-                                <i class="glyphicon glyphicon-lock"></i>
-                            </span>
-                        </div>
-                        <button type="submit" class="btn btn-default " id="btnEntrar">Entrar</button>
-                    </form>
-                    <p> Ainda não possui Cadastro ?
-                        <a href='/cadastro'>Increva-se</a>
-                    </p>
-
-                    <% if (erro) { %>
+                <% if (erro) { %>
                     <div class="alert alert-danger">
-                        <strong>Erro:</strong> <%= erro %>
+                        <strong>Erro:</strong>
+                        <%= erro %>
                     </div>
                     <% } %>
-                </div>
             </div>
         </div>
         <% include ../common/scripts %>
