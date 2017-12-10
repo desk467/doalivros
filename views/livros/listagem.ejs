@@ -1,1 +1,38 @@
-<h1>Listagem de livros</h1>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+      <title>doalivros - Listagem</title>
+      <meta charset="utf-8">
+      <% include ../common/estilos %>
+    </head>
+    <body>
+      <% include ../common/header %>
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand">DOALIVROS</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                       <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="jumbotron text-center">
+              <h1>DOALIVROS</h1>
+              <p>Encontre o livro que deseja ler perto de vocẽ</p>
+              <form class="form-inline">
+                <div class="input-group">
+                  <input type="text" class="form-control" size="70" placeholder="Digite o livro que deseja" required>
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-danger">Pesquisar</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+        <% include ../common/scripts %>
+    </body>
+    <% include ../common/footer %>
+</html>
