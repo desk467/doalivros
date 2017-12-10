@@ -9,11 +9,11 @@ function Usuario(dados, db = null) {
     this.apelido = dados.apelido
     this.email = dados.email
 
-    models(db).Cidade.recuperar(dados.id_cidade, cidade => {
+    models(db).Cidade.recuperar(dados.id_cidade, (err, cidade) => {
         this.cidade = cidade
     })
 
-    models(db).Contato.recuperarPorUsuario(this, contatos => {
+    models(db).Contato.recuperarPorUsuario(this, (err, contatos) => {
         this.contatos = contatos
     })
 }
@@ -72,12 +72,12 @@ module.exports = function (db) {
             }
 
             if (!dados.email.includes('@')) {
-                done('E-mail inválido', null)
+                done('E-mail inválido.', null)
                 return
             }
 
             if(dados.senha.length < 6){
-                done('A senha precisa ter no mínimo, 6 caracteres', null)
+                done('A senha precisa ter no mínimo, 6 caracteres.', null)
                 return
             }
 
@@ -93,7 +93,7 @@ module.exports = function (db) {
                 dados.cidade,
             ], function (err, data) {
                 if (err) {
-                    done('Houve um erro ao processar a solicitação', null)
+                    done('Houve um erro ao processar a solicitação.', null)
                 } else {
                     done(null, metodos.fabricar({ ...dados, id: this.lastID }))
                 }
