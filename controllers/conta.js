@@ -23,7 +23,12 @@ module.exports = function (app, models, m) {
     })
 
     app.get('/cadastro', m.usuario_deslogado, function (req, res) {
-        res.render('conta/cadastro', { erro: null })
+
+        models.Estado.recuperarTudo(function(erro, estados){
+            if(!erro){
+                res.render('conta/cadastro', { erro: null, estados })
+            }
+        })
     })
 
     app.post('/cadastro', m.usuario_deslogado, function (req, res) {

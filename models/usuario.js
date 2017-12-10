@@ -28,7 +28,7 @@ module.exports = function (db) {
                 email      VARCHAR(16),
                 senha      VARCHAR(128),
                 genero     VARCHAR(16),
-                id_cidade  INTEGER REFERENCES Cidade(id)       
+                id_cidade  INTEGER REFERENCES Cidade(id)
             )`)
         },
 
@@ -76,6 +76,11 @@ module.exports = function (db) {
                 return
             }
 
+            if(dados.senha.length < 6){
+                done('A senha precisa ter no mínimo, 6 caracteres', null)
+                return
+            }
+
             const SQL = `INSERT INTO Usuario
                                 (nome, apelido, email, senha, id_cidade)
                         VALUES  (?, ?, ?, ?, ?)`
@@ -85,7 +90,7 @@ module.exports = function (db) {
                 dados.apelido,
                 dados.email,
                 metodos.hashear_senha(dados.senha),
-                dados.id_cidade,
+                dados.cidade,
             ], function (err, data) {
                 if (err) {
                     done('Houve um erro ao processar a solicitação', null)

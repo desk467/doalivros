@@ -16,12 +16,31 @@
       </div>
       <div class="col-sm-4 col-sm-offset-4 conta-form">
         <form method='post'>
-          <input id="nome" type="text" class="form-control" name="nome" placeholder="Nome completo">
-          <input id="apelido" type="text" class="form-control" name="apelido" placeholder="Apelido">
-          <input id="email" type="text" class="form-control" name="email" placeholder="E-mail">
-          <input id="senha" type="password" class="form-control" name="senha" placeholder="Senha">
-          <input id="senha" type="password" class="form-control" name="confirmacao_senha" placeholder="Por favor, repita a senha">
-          <button type="submit" class="btn btn-default " id="btnCadastrar">Cadastrar</button>
+          <fieldset>
+            <p>Dados da conta</p>
+            <input id="nome" type="text" class="form-control" name="nome" placeholder="Nome completo">
+            <input id="apelido" type="text" class="form-control" name="apelido" placeholder="Apelido">
+            <input id="email" type="text" class="form-control" name="email" placeholder="E-mail">
+            <input id="senha" type="password" class="form-control" name="senha" placeholder="Senha">
+            <input id="confirmacao_senha" type="password" class="form-control" name="confirmacao_senha" placeholder="Por favor, repita a senha">
+          </fieldset>
+
+          <fieldset>
+            <p>Você mora onde ?</p>
+            <select name="estado" id="estado" class="form-control" >
+              <option value="">Selecione um estado</option>
+              <% estados.forEach(function(estado){ %>
+                <option value="<%=estado.id%>">
+                  <%=estado.nome%>
+                </option>
+                <% }) %>
+            </select>
+            <select name="cidade" id="cidade" class="form-control" disabled>
+                <option value="">Selecione uma cidade</option>
+            </select>
+          </fieldset>
+
+          <button type="submit" class="btn btn-primary " id="btnCadastrar">Cadastrar</button>
         </form>
 
         <% if (erro) { %>
@@ -33,6 +52,7 @@
       </div>
     </div>
     <% include ../common/scripts %>
+    <script src="/js/form_cadastro.js"></script>
 </body>
 
 <% include ../common/footer %>

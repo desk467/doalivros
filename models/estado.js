@@ -32,12 +32,12 @@ module.exports = function (db) {
         },
 
         recuperarTudo: (done) => {
-            db.get('SELECT * FROM Estado', [id], function (err, dados) {
+            db.all('SELECT * FROM Estado ORDER BY nome ASC', function (err, dados) {
                 if (err) {
                     done('Houve um erro ao processar a solicitação', null)
                 } else {
                     if (dados) {
-                        done(null, metodos.fabricar(dados))
+                        done(null, dados.map(metodos.fabricar))
                     } else {
                         done(null, [])
                     }
