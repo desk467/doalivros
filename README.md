@@ -2,7 +2,7 @@
 
 ## Instruções para execução
 
-Você precisará instalar o NodeJS 8.9.1
+Você precisará instalar o NodeJS 8.9.2
 [Baixe-o aqui](https://nodejs.org/en/)
 
 Abra a pasta do projeto na linha de comando e digite:

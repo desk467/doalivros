@@ -7,6 +7,7 @@ module.exports = function (db) {
         Contato: require('models/contato')(db),
         Usuario: require('models/usuario')(db),
         Livro: require('models/livro')(db),
+        UsuarioLivro: require('models/usuario_livro')(db),
     }
 
     Object.values(models).forEach(model => model.montar())
