@@ -3,23 +3,23 @@
 const crypto = require('crypto')
 const models = require('models')
 
-function Usuario(dados) {
+function Usuario(dados, db = null) {
     this.id = dados.id
     this.nome = dados.nome
     this.apelido = dados.apelido
     this.email = dados.email
 
-    models.Cidade.recuperar(dados.id_cidade, cidade => {
+    models(db).Cidade.recuperar(dados.id_cidade, cidade => {
         this.cidade = cidade
     })
 
-    models.Contato.recuperarPorUsuario(this, contatos => {
+    models(db).Contato.recuperarPorUsuario(this, contatos => {
         this.contatos = contatos
     })
 }
 
 module.exports = function (db) {
-    return {
+    const metodos = {
         montar: () => {
             db.run(`CREATE TABLE IF NOT EXISTS Usuario (
                 id         INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -32,21 +32,21 @@ module.exports = function (db) {
             )`)
         },
 
-        fabricar: (dados) => new Usuario(dados),
+        fabricar: (dados) => new Usuario(dados, db),
 
         hashear_senha: (senha) => crypto.createHash('md5').update(senha).digest("hex"),
 
         autenticar: (usuario, senha, done) => {
             const SQL = 'SELECT * FROM Usuario WHERE apelido = ? OR email = ? AND senha = ?'
 
-            db.get(SQL, [usuario, usuario, this.hashear_senha(senha)], function (err, dados) {
+            db.get(SQL, [usuario, usuario, metodos.hashear_senha(senha)], function (err, dados) {
                 if (err) {
-                    throw 'Houve um erro ao processar a solicitação'
+                    done(err, null)
                 } else {
                     if (dados) {
-                        done(this.fabricar(dados))
+                        done(null, metodos.fabricar(dados))
                     } else {
-                        done(null)
+                        done('Usuário ou senha inválidos', null)
                     }
                 }
             })
@@ -54,12 +54,12 @@ module.exports = function (db) {
         recuperar: (id, done) => {
             db.get('SELECT * FROM Usuario WHERE id = ?', [id], function (err, dados) {
                 if (err) {
-                    throw 'Houve um erro ao processar a solicitação'
+                    done('Houve um erro ao processar a solicitação', null)
                 } else {
-                    if(dados) {
-                        done(this.fabricar(dados))
+                    if (dados) {
+                        done(null, metodos.fabricar(dados))
                     } else {
-                        done(null)
+                        done('Usuário não encontrado', null)
                     }
                 }
             })
@@ -67,29 +67,30 @@ module.exports = function (db) {
 
         inserir: (dados, done) => {
             if (dados.senha !== dados.confirmacao_senha)
-                throw 'Senhas não coincidem.'
+                done('Senhas não coincidem.', null)
 
             if (!dados.email.includes('@'))
-                throw 'E-mail inválido'
+                done('E-mail inválido', null)
 
             const SQL = `INSERT INTO Usuario
-                                (nome, apelido, email, senha, id_genero, id_cidade)
-                        VALUES  (?, ?, ?, ?, ?, ?)`
+                                (nome, apelido, email, senha, id_cidade)
+                        VALUES  (?, ?, ?, ?, ?)`
 
             db.run(SQL, [
                 dados.nome,
                 dados.apelido,
                 dados.email,
                 dados.senha,
-                dados.id_genero,
                 dados.id_cidade,
             ], function (err, data) {
                 if (err) {
-                    throw 'Houve um erro ao processar a solicitação'
+                    throw err
                 } else {
-                    done(this.fabricar({ ...dados, id: this.lastID }))
+                    done(null, metodos.fabricar({ ...dados, id: this.lastID }))
                 }
             })
         }
     }
+
+    return metodos
 }

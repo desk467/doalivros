@@ -7,7 +7,7 @@ function Cidade(dados) {
 }
 
 module.exports = function (db) {
-    return {
+    const metodos =  {
         montar: function () {
             db.run(`CREATE TABLE IF NOT EXISTS Cidade (
                 id      INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -21,12 +21,12 @@ module.exports = function (db) {
         recuperar: (id, done) => {
             db.get('SELECT * FROM Cidade WHERE id = ?', [id], function (err, dados) {
                 if (err) {
-                    throw 'Houve um erro ao processar a solicitação'
+                    done('Houve um erro ao processar a solicitação', null)
                 } else {
                     if (dados) {
-                        done(this.fabricar(dados))
+                        done(null, metodos.fabricar(dados))
                     } else {
-                        done(null)
+                        done('Cidade não encontrada', null)
                     }
                 }
             })
@@ -37,7 +37,7 @@ module.exports = function (db) {
                     throw 'Houve um erro ao processar a solicitação'
                 } else {
                     if (lista) {
-                        done(lista.map(this.fabricar))
+                        done(lista.map(metodos.fabricar))
                     } else {
                         done([])
                     }
@@ -50,7 +50,7 @@ module.exports = function (db) {
                     throw 'Houve um erro ao processar a solicitação'
                 } else {
                     if (lista) {
-                        done(lista.map(this.fabricar))
+                        done(lista.map(metodos.fabricar))
                     } else {
                         done([])
                     }
@@ -58,4 +58,6 @@ module.exports = function (db) {
             })
         }
     }
+
+    return metodos
 }

@@ -14,7 +14,7 @@ function Contato(dados) {
 }
 
 module.exports = function (db) {
-    return {
+    const metodos = {
         montar: function () {
             db.run(`CREATE TABLE IF NOT EXISTS Contato (
                 id          INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -37,7 +37,7 @@ module.exports = function (db) {
                 if (err) {
                     throw 'Houve um erro ao processar a solicitação'
                 } else {
-                    done(this.fabricar({ ...dados, id: this.lastID }))
+                    done(metodos.fabricar({ ...dados, id: this.lastID }))
                 }
             })
         },
@@ -48,7 +48,7 @@ module.exports = function (db) {
                     throw 'Houve um erro ao processar a solicitação'
                 } else {
                     if (dados) {
-                        done(this.fabricar(dados))
+                        done(metodos.fabricar(dados))
                     } else {
                         done(null)
                     }
@@ -56,4 +56,6 @@ module.exports = function (db) {
             })
         }
     }
+
+    return metodos
 }

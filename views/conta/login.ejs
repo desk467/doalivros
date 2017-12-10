@@ -1,51 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-	  <title>DOALIVROS - LOGIN</title>
-	  <meta charset="utf-8">
-	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </head>
-    <body>
+
+<html lang="pt-BR">
+
+<head>
+    <title>doalivros - Entrar</title>
+    <meta charset="utf-8">
+    <% include ../common/estilos %>
+</head>
+
+<body>
+    <% include ../common/header %>
         <nav class="navbar navbar-inverse">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" >DOALIVROS</a>
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand">DOALIVROS</a>
+                </div>
+                <ul class="nav navbar-nav">
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-home"></span> Home</a>
+                    </li>
+                </ul>
             </div>
-            <ul class="nav navbar-nav">
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-            </ul>
-          </div>
         </nav>
         <div class="col-sm-12">
-                <div class="row">
-                   <div class="jumbotron text-center">
-                      <h2>LOGIN</h2>
-                    </div>
-                    <div class="col-sm-12" >
-                            <form>
-                                <div class="input-group input-group-lg">
-
-                                    <input id="usuario" type="text" class="form-control" name="login" placeholder="Usuário">
-                                    <span id="usuario" class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                </div>
-                                <div class="input-group input-group-lg">
-                                    <input id="senha" type="password" class="form-control" name="password" placeholder="Senha">
-                                    <span id="senha" class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                </div>
-                            </form>
-                            <p> Já possui Cadastro ? <a>Increva-se</a></p>
-                            <button type="button" class="btn btn-default " id="btnEntrar">Entrar</button>
-                        </div>
-                    <br><br>
+            <div class="row">
+                <div class="jumbotron text-center">
+                    <h2>LOGIN</h2>
                 </div>
-        </div>
-    </body>
-    <footer>
+                <div class="col-sm-12">
+                    <form method="post">
+                        <div class="input-group input-group-lg">
 
-    </footer>
+                            <input id="usuario" type="text" class="form-control" name="usuario" placeholder="Usuário">
+                            <span id="usuario" class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                        </div>
+                        <div class="input-group input-group-lg">
+                            <input id="senha" type="password" class="form-control" name="senha" placeholder="Senha">
+                            <span id="senha" class="input-group-addon">
+                                <i class="glyphicon glyphicon-lock"></i>
+                            </span>
+                        </div>
+                        <button type="submit" class="btn btn-default " id="btnEntrar">Entrar</button>
+                    </form>
+                    <p> Ainda não possui Cadastro ?
+                        <a href='/cadastro'>Increva-se</a>
+                    </p>
+
+                    <% if (erro) { %>
+                    <div class="alert alert-danger">
+                        <strong>Erro:</strong> <%= erro %>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <% include ../common/scripts %>
+</body>
+
+<% include ../common/footer %>
+
 </html>
