@@ -1,8 +1,7 @@
 // Usuario_Livro
 
-
 module.exports = function (db) {
-    return {
+    const metodos = {
         montar: () => {
             db.run(`CREATE TABLE IF NOT EXISTS UsuarioLivro (
                 id          INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -17,11 +16,13 @@ module.exports = function (db) {
                 usuario.id,
             ], function (err, data) {
                 if (err) {
-                    throw 'Houve um erro ao processar a solicitação'
+                    done('Houve um erro ao processar a solicitação', null)
                 } else {
-                    done(true)
+                    done(null, true)
                 }
             })
         }
     }
+
+    return metodos
 }

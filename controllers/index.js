@@ -1,6 +1,6 @@
-module.exports = function (app, models) {
+module.exports = function (app, models, middlewares) {
     // Registro dos controllers
 
-    require('controllers/conta')(app, models)
-    require('controllers/livros')(app, models)
+    require('controllers/conta')(app, models, middlewares)
+    require('controllers/livros')(app, models, middlewares)
 }

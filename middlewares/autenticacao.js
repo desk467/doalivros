@@ -4,5 +4,14 @@
 // Se não, redireciona para login.
 
 module.exports = function(req, res, next) {
-    next()
+    if(req.session.usuario) {
+        next()
+    } else {
+        if(req.path.includes('/login')){
+            next()
+        } else {
+            const ultimaUrl = new Buffer(req.path).toString('base64')
+            res.redirect(`/login?redirect="${ultimaUrl}"`)
+        }
+    }
 }
