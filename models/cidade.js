@@ -10,9 +10,9 @@ module.exports = function (db) {
     const metodos =  {
         montar: function () {
             db.run(`CREATE TABLE IF NOT EXISTS Cidade (
-                id      INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                nome    VARCHAR(60),
-                estado  CHAR(2)
+                id          INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                nome        VARCHAR(60),
+                id_estado   INTEGER NOT NULL REFERENCES Estado(id)
             )`)
         },
 
@@ -32,14 +32,14 @@ module.exports = function (db) {
             })
         },
         recuperarPorEstado: (estado, done) => {
-            db.all('SELECT * FROM Cidade WHERE estado = ?', function (err, lista) {
+            db.all('SELECT * FROM Cidade WHERE id_estado = ?', [estado.id] ,function (err, lista) {
                 if (err) {
-                    throw 'Houve um erro ao processar a solicitação'
+                    done('Houve um erro ao processar a solicitação', null)
                 } else {
                     if (lista) {
-                        done(lista.map(metodos.fabricar))
+                        done(null, lista.map(metodos.fabricar))
                     } else {
-                        done([])
+                        done(null, [])
                     }
                 }
             })
@@ -47,12 +47,12 @@ module.exports = function (db) {
         recuperarTudo: (done) => {
             db.all('SELECT * FROM Cidade', function (err, lista) {
                 if (err) {
-                    throw 'Houve um erro ao processar a solicitação'
+                    done('Houve um erro ao processar a solicitação', null)
                 } else {
                     if (lista) {
-                        done(lista.map(metodos.fabricar))
+                        done(null, lista.map(metodos.fabricar))
                     } else {
-                        done([])
+                        done(null, [])
                     }
                 }
             })

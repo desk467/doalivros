@@ -3,6 +3,7 @@ module.exports = function (db) {
 
     const models = {
         Genero: require('models/genero')(db),
+        Estado: require('models/estado')(db),
         Cidade: require('models/cidade')(db),
         Contato: require('models/contato')(db),
         Usuario: require('models/usuario')(db),
