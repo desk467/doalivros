@@ -43,9 +43,14 @@
           <button type="submit" class="btn btn-primary " id="btnCadastrar">Cadastrar</button>
         </form>
 
-
-      </div>
-    </div>
+        <% if (erro) { %>
+                  <div class="alert alert-danger">
+                    <strong>Erro:</strong>
+                    <%= erro %>
+                  </div>
+                  <% } %>
+              </div>
+            </div>
     <% include ../common/scripts %>
     <script src="/js/form_cadastro.js"></script>
 </body>
