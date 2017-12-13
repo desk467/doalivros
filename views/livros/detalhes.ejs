@@ -1,1 +1,42 @@
-<h1>Detalhe do livro</h1>
+<div id="modalLivroDetalhe" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2><%= livro.nome %></h2>
+    </div>
+    <div class="modal-body">
+        <div class="col-sm-6">
+            <!--<img/>-->
+        </div>
+        <div class="col-sm-6">
+            <fieldset>
+                <p>
+                    <strong>Autor:</strong>
+                    <%= livro.autor %>
+                </p>
+                <p>
+                    <strong>Editora:</strong>
+                    <%= livro.editora %>
+                </p>
+                <p>
+                    <strong>Genero:</strong>
+                    <%= livro.genero %>
+                </p>
+                <p>
+                    <strong>Descrição:</strong>
+                    <%= livro.descricao %>
+                </p>
+                <p>
+                    <strong>Dono:</strong>
+                    <%= usuario.nome %>
+                </p>
+
+            </fieldset>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success" id="btnCadastrar">Eu Quero!</button>
+    </div>
+  </div>
+
+</div>
