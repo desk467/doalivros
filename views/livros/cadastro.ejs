@@ -11,20 +11,20 @@
     <% include ../common/header %>
         <div class="row">
             <div class="jumbotron text-center">
-                <h2>Cadastrar livro</h2>
+                <h2>Cadastro livro</h2>
             </div>
-            <div class="col-sm-12">
+            <div class="col-sm-4 col-sm-offset-4 conta-form">
                 <form method='post'>
-
-                    <input id="nome" type="text" class="form-control" name="nome" placeholder="Nome">
-                    <input id="autor" type="text" class="form-control" name="autor" placeholder="Autor">
-                    <input id="editora" type="text" class="form-control" name="editora" placeholder="Editora">
-                    <textarea id="decricao" type="text" rows="5" class="form-control" name="descrcao" placeholder="Descrição" />
-                    <input id="genero" type="text" class="form-control" name="genero" placeholder="Genero">
-                    <input id="cidade" type="text" class="form-control" name="cidade" placeholder="Cidade">
-
+                    <fieldset>
+                        <input id="nome" type="text" class="form-control" name="nome" placeholder="Nome">
+                        <input id="autor" type="text" class="form-control" name="autor" placeholder="Autor">
+                        <input id="editora" type="text" class="form-control" name="editora" placeholder="Editora">
+                        <textarea id="decricao" type="text" rows="5" class="form-control" name="descrcao" placeholder="Descrição" />
+                        <input id="genero" type="text" class="form-control" name="genero" placeholder="Genero">
+                        <input id="cidade" type="text" class="form-control" name="cidade" placeholder="Cidade">
+                    </fieldset>
                     <!--<input id="Status" type="text" class="form-control" name="status" placeholder="Status">-->
-                    <button type="submit" class="btn btn-default " id="btnCadastrar">Cadastrar</button>
+                    <button type="submit" class="btn btn-primary" id="btnCadastrar">Cadastrar</button>
                 </form>
 
                 <% if (erro) { %>
@@ -32,10 +32,11 @@
                         <strong>Erro:</strong>
                         <%= erro %>
                     </div>
-                    <% } %>
+                <% } %>
             </div>
         </div>
         <% include ../common/scripts %>
+        <script src="/js/form_cadastro.js"></script>
 </body>
 <% include ../common/footer %>
 

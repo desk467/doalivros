@@ -1,17 +1,59 @@
-<h1>Perfil do usuário</h1>
+<!DOCTYPE html>
 
-<p>
-    <strong>Apelido:</strong>
-    <%= usuario.apelido %>
-</p>
-<p>
-    <strong>Nome:</strong>
-    <%= usuario.nome %>
-</p>
-<p>
-    <strong>Email:</strong>
-    <%= usuario.email %>
-</p>
+<html lang="pt-BR">
+
+<head>
+  <title>doalivros - Perfil</title>
+  <meta charset="utf-8">
+  <% include ../common/estilos %>
+</head>
+
+<body>
+  <% include ../common/header %>
+    <div class="row">
+      <div class="jumbotron text-center">
+        <h2>Olá, <%= usuario.apelido %></h2>
+      </div>
+      <div class="col-sm-4 col-sm-offset-4 conta-form">
+
+              <fieldset>
+                <p>
+                    <strong>Apelido:</strong>
+                    <%= usuario.apelido %>
+                </p>
+                <p>
+                    <strong>Nome:</strong>
+                    <%= usuario.nome %>
+                </p>
+                <p>
+                    <strong>Email:</strong>
+                    <%= usuario.email %>
+                </p>
+                <p>
+                    <strong>Cidade:</strong>
+                    <%= usuario.Cidade %>
+                </p>
+                <p>
+                    <strong>Estado:</strong>
+                    <%= usuario.estado %>
+                </p>
+                <p>
+                    <strong>Contato:</strong>
+                    <%= usuario.contato %>
+                </p>
+          </fieldset>
+
+          <button type="submit" class="btn btn-warning btn-md" id="btnAterar">Alterar</button>
+
+      </div>
+    </div>
+</body>
+
+<% include ../common/footer %>
+
+</html>
 
 
-<a href="/logout">Sair da conta</a>
+
+
+

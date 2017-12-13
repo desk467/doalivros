@@ -11,17 +11,18 @@
             <% } %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li>
-                <% if (usuario) { %>
-                    <a href="/conta">@<%= usuario.apelido %></a>
 
+                <% if (usuario) { %>
+                    <li><a href="/conta">@<%= usuario.apelido %></a></li>
+                    <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
                 <% } else { %>
-                    <a href="/login">
+                    <li><a href="/login">
                         <span class="glyphicon glyphicon-log-in"></span> Entrar
-                    </a>
+                    </a></li>
+
                     <% } %>
 
-            </li>
+
         </ul>
     </div>
 </nav>
