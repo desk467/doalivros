@@ -4,11 +4,17 @@
             <a class="navbar-brand bold" href="/">doalivros</a>
         </div>
         <ul class="nav navbar-nav">
+            <% if (usuario) { %>
+                    <li><a href="/livro/novo">Novo Livro</a></li>
+                    <li><a href="">Biblioteca</a></li>
+                    <li><a href="">Interesses</a></li>
+            <% } %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <% if (usuario) { %>
                     <a href="/conta">@<%= usuario.apelido %></a>
+
                 <% } else { %>
                     <a href="/login">
                         <span class="glyphicon glyphicon-log-in"></span> Entrar
